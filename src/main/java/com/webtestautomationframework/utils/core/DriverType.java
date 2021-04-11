@@ -190,7 +190,27 @@ public enum DriverType {
         }
 
     },
-    SAFARI{},
+    SAFARI{
+        @Override
+        WebDriver getWebDriverObject(DesiredCapabilities desiredCapabilities) {
+            return null;
+        }
+
+        @Override
+        DesiredCapabilities getDesiredCapabilities() {
+            return null;
+        }
+
+        @Override
+        WebDriverActions getActions(WebDriver driver) {
+            return null;
+        }
+
+        @Override
+        GifCreatorListener getEventListener() {
+            return null;
+        }
+    },
     CHROME_HEADLESS{
         @Override
         public DesiredCapabilities getDesiredCapabilities(){
@@ -283,20 +303,13 @@ public enum DriverType {
     private static final Logger log = Logger.getLogger(DriverType.class);
     private static GifCreatorListener eventListener;
 
-    WebDriver getWebDriverObject(DesiredCapabilities desiredCapabilities) {
-        return null;
-    }
+    abstract WebDriver getWebDriverObject(DesiredCapabilities desiredCapabilities);
 
-    DesiredCapabilities getDesiredCapabilities() {
-        return null;
-    }
+    abstract  DesiredCapabilities getDesiredCapabilities();
 
-    WebDriverActions getActions(WebDriver driver) {
-        return null;
-    }
+    abstract WebDriverActions getActions(WebDriver driver);
 
-    GifCreatorListener getEventListener(){return null;}
-
+    abstract GifCreatorListener getEventListener();
 
 
 }
